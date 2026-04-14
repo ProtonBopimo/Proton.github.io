@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>My RoR Cars</title>
@@ -11,28 +12,69 @@
     }
 
     img {
-      width: 80%;
+      width: 400px;
       border-radius: 12px;
       margin: 20px;
+      cursor: pointer;
+    }
+
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <h1>My Rigs of Rods Pictures </h1>
+
+  <h1>My Rigs of Rods Pictures 🚗</h1>
   <p>All my artwork is made in Rigs of Rods.</p>
-<a href="honda.png" download onclick="return confirm('Download this image?')">
-  <img src="honda.png" width="400">
-</a>
 
-<a href="toyota.png" download onclick="return confirm('Download this image?')">
-  <img src="toyota.png" width="400">
-</a>
+  <img src="honda.png" onclick="openPopup('honda.png')">
+  <img src="toyota.png" onclick="openPopup('toyota.png')">
+  <img src="VW.png" onclick="openPopup('VW.png')">
+  <img src="Dodge.jpg" onclick="openPopup('Dodge.jpg')">
 
-<a href="VW.png" download onclick="return confirm('Download this image?')">
-  <img src="VW.png" width="400">
-</a>
+  <div id="popup">
+    <p>Download this image?</p>
+    <button onclick="downloadImage()">Yes</button>
+    <button onclick="closePopup()">No</button>
+  </div>
 
-<a href="Dodge.jpg" download onclick="return confirm('Download this image?')">
-  <img src="Dodge.jpg" width="400">
-</a>
+  <script>
+    let currentImage = "";
+
+    function openPopup(img) {
+      currentImage = img;
+      document.getElementById("popup").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function downloadImage() {
+      window.location.href = currentImage;
+      closePopup();
+    }
+  </script>
+
+</body>
+</html>
