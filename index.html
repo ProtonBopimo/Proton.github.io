@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
   <title>My RoR Cars</title>
@@ -16,6 +15,7 @@
       border-radius: 12px;
       margin: 20px;
       cursor: pointer;
+      transition: transform 0.2s ease;
     }
 
     #popup {
@@ -47,17 +47,20 @@
   <h1>My Rigs of Rods Pictures 🚗</h1>
   <p>All my artwork is made in Rigs of Rods.</p>
 
+  <!-- Images -->
   <img src="honda.png" onclick="openPopup('honda.png')">
   <img src="toyota.png" onclick="openPopup('toyota.png')">
   <img src="VW.png" onclick="openPopup('VW.png')">
   <img src="Dodge.jpg" onclick="openPopup('Dodge.jpg')">
 
+  <!-- Popup -->
   <div id="popup">
     <p>Download this image?</p>
     <button onclick="downloadImage()">Yes</button>
     <button onclick="closePopup()">No</button>
   </div>
 
+  <!-- Script -->
   <script>
     let currentImage = "";
 
@@ -74,6 +77,20 @@
       window.location.href = currentImage;
       closePopup();
     }
+
+    // Pinterest-style mouse effect
+    document.addEventListener("mousemove", (e) => {
+      const images = document.querySelectorAll("img");
+
+      images.forEach(img => {
+        const rect = img.getBoundingClientRect();
+
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+
+        img.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px)`;
+      });
+    });
   </script>
 
 </body>
