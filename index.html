@@ -63,20 +63,16 @@
   <!-- Script -->
   <script>
     let currentImage = "";
-
-    function openPopup(img) {
-      currentImage = img;
-      document.getElementById("popup").style.display = "block";
-    }
-
-    function closePopup() {
-      document.getElementById("popup").style.display = "none";
-    }
-
-    function downloadImage() {
-      window.location.href = currentImage;
-      closePopup();
-    }
+function downloadImage() {
+  const link = document.createElement('a');
+  link.href = currentImage;
+  link.download = currentImage;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  closePopup();
+}
+  
 
     // Pinterest-style mouse effect
     document.addEventListener("mousemove", (e) => {
